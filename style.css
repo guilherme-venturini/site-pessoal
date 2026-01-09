@@ -1,84 +1,152 @@
-/* ===============================
-   RESET BÁSICO
-=============================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ==============================
+   ESTILO GERAL DO SITE
+============================== */
 
-/* ===============================
-   BODY E FUNDOS
-=============================== */
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background-color: #ffffff;
     /* fundo branco */
     color: #333333;
     /* texto cinza escuro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
-    padding: 20px;
 }
 
-/* ===============================
-   CABEÇALHO
-=============================== */
+/* ==============================
+   HEADER / TÍTULO
+============================== */
+
 header {
+    background-color: #4CAF50;
+    /* verde moderno */
+    color: white;
+    padding: 30px 20px;
     text-align: center;
-    margin-bottom: 40px;
 }
 
 header h1 {
-    color: red;
-    /* seu "TESTE AO VIVO" ou título principal */
-    font-size: 3rem;
-    margin-bottom: 10px;
+    margin: 0;
+    font-size: 2.5em;
 }
 
 header p {
-    font-size: 1.2rem;
-    color: #555555;
+    margin-top: 10px;
+    font-size: 1.2em;
 }
 
-/* ===============================
+/* ==============================
    SEÇÕES
-=============================== */
+============================== */
+
 section {
-    margin-bottom: 30px;
+    padding: 50px 20px;
+    border-bottom: 1px solid #eee;
 }
 
 section h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 2em;
+    margin-bottom: 20px;
     color: #222222;
 }
 
-section p {
-    font-size: 1rem;
-    color: #444444;
+/* ==============================
+   SOBRE MIM
+============================== */
+
+#sobre p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
 }
 
-/* ===============================
-   LINKS
-=============================== */
-a {
-    color: #007bff;
-    /* azul padrão */
+/* ==============================
+   HABILIDADES
+============================== */
+
+#habilidades ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#habilidades li {
+    background-color: #f1f1f1;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+/* ==============================
+   PROJETOS
+============================== */
+
+.projeto {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 8px;
+    max-width: 700px;
+}
+
+.projeto h3 {
+    margin-top: 0;
+}
+
+.projeto p {
+    margin: 10px 0;
+}
+
+.projeto a {
+    color: #4CAF50;
     text-decoration: none;
+    font-weight: bold;
 }
 
-a:hover {
+.projeto a:hover {
     text-decoration: underline;
 }
 
-/* ===============================
-   FOOTER
-=============================== */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding: 20px 0;
-    border-top: 1px solid #ddd;
-    color: #666666;
-    font-size: 0.9rem;
+/* ==============================
+   CONTATO
+============================== */
+
+#contato ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contato li {
+    margin: 10px 0;
+}
+
+#contato a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+#contato a:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+   RESPONSIVO (CELULAR)
+============================== */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    section h2 {
+        font-size: 1.7em;
+    }
+
+    .projeto {
+        padding: 15px;
+    }
 }
