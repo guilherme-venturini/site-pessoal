@@ -80,3 +80,19 @@ footer {
     padding: 20px;
     font-size: 14px;
 }
+
+.btn-instagram {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-instagram:hover {
+    opacity: 0.85;
+}
