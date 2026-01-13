@@ -101,3 +101,10 @@ footer {
     padding: 60px 20px;
     text-align: center;
 }
+
+.foto-perfil {
+    width: 180px;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto;
+}
