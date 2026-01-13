@@ -96,3 +96,8 @@ footer {
 .btn-instagram:hover {
     opacity: 0.85;
 }
+
+#contato {
+    padding: 60px 20px;
+    text-align: center;
+}
