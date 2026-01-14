@@ -108,3 +108,20 @@ footer {
     display: block;
     margin: 20px auto;
 }
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10%;
+    background-color: #25d366;
+    /* whatsapps*/
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.btn.insta {
+    background-color: #e1306c;
+    /* instagram */
+}
