@@ -46,20 +46,28 @@
             <section id="servicos">
                 <h2>Serviços</h2>
 
-                <div class="cards">
-                    <div class="card">
+                <div class="servicos-container">
+                    <div class="servicos" onclick="toggleservico('Presencial')">
                         <h3>Personal Presencial</h3>
-                        <p>Atendimento individual focado em resultados.</p>
+                        <p class=" descricao" id="Presencial">
+                            Treinos realizados
+                            presencialmente, com acompanhamento
+                            individual,
+                            correção de execução, ajuste de
+                            cargas e foco toal em resultados reais.
+                        </p>
                     </div>
 
-                    <div class="card">
-                        <h3>Personal Online</h3>
-                        <p>Treinos personalizados com acompanhamento.</p>
-                    </div>
-
-                    <div class="card">
-                        <h3>Consultoria</h3>
-                        <p>Planejamento de treino e evolução contínua.</p>
+                    <div class="servicos" onclick="toggleservico('Consultoria')">
+                        <h3>Consultoria Online</h3>
+                        <p class="descricao" id="Consultoria">
+                            Treinos personalizados à
+                            distância, com acompanhamento contínuo
+                            pelo
+                            aplicativo <strong>MFIT</strong>,
+                            controle de evolução, ajustes de treinos
+                            e suporte profissional.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -84,6 +92,15 @@
     <footer>
         <p>© 2026 GV Personal</p>
     </footer>
+
+    <script>
+        function toggleservico(id) {
+            const elemento = document.getElementById(id);
+            elemento.style.display =
+                elemento.style.display ===
+                    "block" ? "none" : "block";
+        }
+    </script>
 
 </body>
 
