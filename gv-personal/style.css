@@ -166,3 +166,15 @@ footer {
     line-height: 1.5;
     color: #ccc;
 }
+
+.contato-botoes {
+    position: relative;
+    z-index: 20;
+}
+
+.btn {
+    position: relative;
+    z-index: 30;
+    cursor: pointer;
+
+}
