@@ -152,12 +152,13 @@ section h2 {
 }
 
 .descricao {
-    list-style-position: inside;
+    list-style-position: none;
     padding-left: 0%;
-    margin: 10px 0;
-    text-align: center;
+    margin: 10px auto;
+    display: inline-block;
+    text-align: left;
 }
 
 .descricao li {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
