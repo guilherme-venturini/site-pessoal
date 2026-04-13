@@ -150,3 +150,14 @@ section h2 {
         padding: 15px;
     }
 }
+
+.descricao {
+    list-style-position: inside;
+    padding-left: 0%;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.descricao li {
+    margin-bottom: 5px;
+}
