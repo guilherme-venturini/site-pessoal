@@ -159,6 +159,8 @@ section h2 {
     text-align: left;
 }
 
-.descricao li {
-    margin-bottom: 6px;
+.descricao li ::before {
+    content: ◘;
+    color: #00ff88;
+    front-weight: bold;
 }
