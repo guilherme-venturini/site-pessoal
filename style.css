@@ -164,3 +164,12 @@ section h2 {
     color: #00ff88;
     front-weight: bold;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10%;
+}
