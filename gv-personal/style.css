@@ -1,180 +1,509 @@
+/* ================================
+   RESET E VARIÁVEIS GLOBAIS
+   ================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+}
+
+/* Variáveis CSS: mudar aqui reflete em todo o site */
+:root {
+    --vermelho: #e63000;
+    --vermelho-escuro: #b32500;
+    --fundo: #0a0a0a;
+    --fundo-card: #141414;
+    --fundo-card-hover: #1e1e1e;
+    --texto: #f0f0f0;
+    --texto-fraco: #888;
+    --borda: #222;
+    --whatsapp: #25d366;
+    --instagram: #e1306c;
+    --transicao: 0.3s ease;
 }
 
 body {
-    background-color: #0f0f0f;
-    color: #ffffff;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
+/* ================================
+   HEADER / NAVEGAÇÃO
+   ================================ */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: #000;
+    padding: 18px 40px;
+    background: rgba(0, 0, 0, 0.95);
+    position: fixed;
+    /* Fica fixo no topo ao rolar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid var(--borda);
+    /* Transição suave para a sombra que aparece ao rolar */
+    transition: box-shadow var(--transicao);
 }
 
-.header h1 {
-    color: red;
+/* Classe adicionada pelo JS quando o usuário rola a página */
+.header.scrolled {
+    box-shadow: 0 4px 30px rgba(230, 48, 0, 0.15);
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.logo span {
+    color: var(--vermelho);
 }
 
 .header nav a {
-    color: white;
-    margin-left: 15px;
+    color: var(--texto-fraco);
+    margin-left: 30px;
     text-decoration: none;
-}
-
-.hero {
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.hero h2 {
-    font-size: 48px;
-}
-
-.hero p {
-    margin: 15px 0;
-    font-size: 18px;
-}
-
-.btn {
-    background: red;
-    color: white;
-    padding: 15px 25px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-section {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.card {
-    background: #1a1a1a;
-    padding: 20px;
-    width: 250px;
-    border-radius: 8px;
-}
-
-footer {
-    background: #000;
-    text-align: center;
-    padding: 20px;
     font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color var(--transicao);
 }
 
-.btn-instagram {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 12px 24px;
-    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-    color: #fff;
+.header nav a:hover {
+    color: var(--vermelho);
+}
+
+/* Botão hamburguer — escondido no desktop */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all var(--transicao);
+}
+
+/* Animação do X quando o menu está aberto */
+.menu-toggle.ativo span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.ativo span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.ativo span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menu mobile: painel deslizante */
+.menu-mobile {
+    display: none;
+    /* Só aparece no mobile via media query */
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: #000;
+    z-index: 99;
+    flex-direction: column;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--borda);
+    /* Escondido por padrão, JS adiciona a classe .aberto */
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transicao), opacity var(--transicao);
+}
+
+.menu-mobile.aberto {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.menu-link {
+    color: var(--texto);
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.3s;
+    padding: 14px 40px;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid var(--borda);
+    display: block;
+    transition: color var(--transicao);
 }
 
-.btn-instagram:hover {
-    opacity: 0.85;
+.menu-link:hover {
+    color: var(--vermelho);
 }
 
-#contato {
-    padding: 60px 20px;
+/* ================================
+   HERO — seção principal
+   ================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+    /* Degradê radial sutil para dar profundidade */
+    background: radial-gradient(ellipse at center top, #1a0500 0%, var(--fundo) 60%);
+    gap: 60px;
+}
+
+.hero-tag {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--vermelho);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.hero-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 100px);
+    /* clamp = mínimo, ideal, máximo */
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.hero-titulo span {
+    color: var(--vermelho);
+    display: block;
+}
+
+.hero-sub {
+    font-size: 18px;
+    color: var(--texto-fraco);
+    margin: 20px 0 30px;
+    max-width: 400px;
+}
+
+.btn-hero {
+    background: var(--vermelho);
+    color: #fff;
+    padding: 16px 40px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: background var(--transicao), transform var(--transicao);
+}
+
+.btn-hero:hover {
+    background: var(--vermelho-escuro);
+    transform: translateY(-2px);
+}
+
+/* Estatísticas no hero */
+.hero-stats {
+    display: flex;
+    gap: 60px;
+}
+
+.stat {
     text-align: center;
 }
 
-.contato-botoes {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.foto-perfil {
-    width: 180px;
-    border-radius: 50%;
+.contador {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--vermelho);
     display: block;
-    margin: 20px auto;
+    line-height: 1;
 }
 
-.btn {
-    display: inline-block;
-    padding: 14px;
-    background-color: #25d366;
-    /* whatsapps*/
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
+.stat p {
+    font-size: 13px;
+    color: var(--texto-fraco);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 6px;
 }
 
-.btn.insta {
-    background-color: #e1306c;
-    /* instagram */
-}
-
-.servicos-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 800px;
+/* ================================
+   SEÇÕES GERAIS
+   ================================ */
+section {
+    padding: 100px 20px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-.servico {
-    background-color: #1e1e1e;
-    padding: 20px;
+/* Títulos de seção com linha decorativa */
+.section-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-titulo::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--vermelho);
+    margin: 12px auto 0;
+}
+
+/* ================================
+   SOBRE
+   ================================ */
+.sobre-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    text-align: left;
+}
+
+.foto-perfil {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    /* não encolhe em telas menores */
+    border: 3px solid var(--vermelho);
+}
+
+.sobre-texto p {
+    color: #bbb;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.sobre-texto strong {
+    color: #fff;
+}
+
+/* ================================
+   SERVIÇOS — cards expansíveis
+   ================================ */
+.servicos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.servico-card {
+    background: var(--fundo-card);
+    border: 1px solid var(--borda);
     border-radius: 10px;
+    overflow: hidden;
+    /* garante que nada vaze fora do card */
+    transition: border-color var(--transicao), transform var(--transicao);
     cursor: pointer;
-    transition: transform 0.2s,
-        background-color 0.2s;
 }
 
-.servico:hover {
-    transform: scale(1.02);
-    background-color: #2a2a2a;
+.servico-card:hover {
+    border-color: var(--vermelho);
+    transform: translateX(4px);
 }
 
-.servico h3 {
-    margin-bottom: 10px;
+/* Card ativo recebe borda vermelha mais forte */
+.servico-card.ativo {
+    border-color: var(--vermelho);
 }
 
-.dercricao {
-    display: none;
-    margin-top: 10px;
+.servico-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 28px;
+}
+
+.servico-icone {
+    font-size: 28px;
+}
+
+.servico-header h3 {
+    flex: 1;
+    /* ocupa o espaço restante, empurrando a seta para o lado */
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.seta {
+    font-size: 12px;
+    color: var(--texto-fraco);
+    transition: transform var(--transicao);
+    display: inline-block;
+}
+
+/* Gira a seta quando o card está aberto */
+.servico-card.ativo .seta {
+    transform: rotate(180deg);
+}
+
+/* Lista do serviço: começa escondida com altura 0 */
+.descricao {
+    list-style: none;
+    max-height: 0;
+    /* esconde o conteúdo */
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 28px;
+}
+
+/* Quando o card está ativo, expande o conteúdo */
+.servico-card.ativo .descricao {
+    max-height: 300px;
+    /* valor maior que o conteúdo real */
+    padding: 0 28px 24px;
+}
+
+.descricao li {
+    padding: 8px 0;
+    color: #bbb;
     font-size: 15px;
-    line-height: 1.5;
-    color: #ccc;
+    border-top: 1px solid var(--borda);
+}
+
+.descricao li:first-child {
+    border-top: none;
+}
+
+/* ================================
+   CONTATO
+   ================================ */
+#contato {
+    text-align: center;
+}
+
+#contato p {
+    color: var(--texto-fraco);
+    font-size: 16px;
+    margin-bottom: 36px;
 }
 
 .contato-botoes {
-    position: relative;
-    z-index: 20;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    /* quebra linha em telas pequenas */
 }
 
 .btn {
-    position: relative;
-    z-index: 30;
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform var(--transicao), opacity var(--transicao);
+    color: #fff;
+}
 
+.btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+.btn-whats {
+    background: var(--whatsapp);
+}
+
+.btn-insta {
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+    background: #000;
+    text-align: center;
+    padding: 28px 20px;
+    font-size: 13px;
+    color: var(--texto-fraco);
+    border-top: 1px solid var(--borda);
+}
+
+/* ================================
+   ANIMAÇÃO DE ENTRADA (scroll)
+   ================================ */
+/* Elementos começam invisíveis e levemente abaixo */
+.revelar {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Quando visível, animam para a posição normal */
+.revelar.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================================
+   RESPONSIVO — MOBILE
+   ================================ */
+@media (max-width: 768px) {
+    .header {
+        padding: 16px 20px;
+    }
+
+    .header nav {
+        display: none;
+        /* esconde o nav no mobile */
+    }
+
+    .menu-toggle {
+        display: flex;
+        /* mostra o hamburguer no mobile */
+    }
+
+    .menu-mobile {
+        display: flex;
+        /* permite o JS controlar a visibilidade */
+    }
+
+    .hero-stats {
+        gap: 30px;
+    }
+
+    .sobre-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .section-titulo {
+        font-size: 36px;
+    }
+
+    section {
+        padding: 80px 20px;
+    }
 }
