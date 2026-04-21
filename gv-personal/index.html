@@ -5,72 +5,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GV Personal Trainer</title>
+    <!-- Google Fonts: Bebas Neue para títulos, Outfit para corpo -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="header">
-        <h1>GV Personal</h1>
+    <!-- HEADER: barra de navegação fixa no topo -->
+    <header class="header" id="header">
+        <h1 class="logo">GV <span>Personal</span></h1>
         <nav>
             <a href="#sobre">Sobre</a>
             <a href="#servicos">Serviços</a>
             <a href="#contato">Contato</a>
         </nav>
+
+        <!-- Botão hamburguer (só aparece no mobile) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
+
+    <!-- MENU MOBILE: painel que abre quando clicar no hamburguer -->
+    <div class="menu-mobile" id="menuMobile">
+        <a href="#sobre" class="menu-link">Sobre</a>
+        <a href="#servicos" class="menu-link">Serviços</a>
+        <a href="#contato" class="menu-link">Contato</a>
+    </div>
 
     <main>
 
-
-
-        <section id="sobre">
-            <h2>Sobre mim</h2>
-
-            <img src="img/perfil.jpg.jpg" alt="foto de Guilherme Venturini" class="foto-perfil">
-            <p>
-                Profissional de Educação Física formado pela Fig-Unimesp, com 4 anos de experiência na área.
-                Atuo com foco e, hipertrofia, emagrecimento e qualidade de vid, desenvolvendo treinos personalizados de
-                acordo com o objetivo de cada aluno.
-                Ofereço acompanhamento completo, tanto prescencial quanto online, visando resultados consistentes e
-                evoluçao contínua.
-            </p>
-        </section>
-
-        <section id="servicos">
-            <h2>Serviços</h2>
-
-            <div class="servicos-conatiner">
-                <div class="servicos" onclick="toggleservico('Presencial')">
-                    <h3>Personal Presencial</h3>
-                    <ul class=" descricao" id="Presencial">
-                        <li> Acompanhamento 100% individual</li>
-                        <li> Coreeção de execução em tempo real</li>
-                        <li> Ajustes de cargas durante o treino</li>
-                        <li>Foco total em resultados</li>
-                    </ul>
+        <!-- HERO: seção de destaque principal -->
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-tag">Personal Trainer</p>
+                <h2 class="hero-titulo">Transforme seu<br><span>corpo e sua vida</span></h2>
+                <p class="hero-sub">Treinos 100% personalizados para seus objetivos.</p>
+                <a href="#contato" class="btn btn-hero">Comece agora</a>
+            </div>
+            <!-- Números animados — contadores que sobem ao entrar na tela -->
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="contador" data-alvo="4">0</span>
+                    <p>Anos de experiência</p>
                 </div>
-
-                <div class="servicos" onclick="toggleservico('Consultoria')">
-                    <h3>Consultoria Online</h3>
-                    <ul class="descricao" id="Consultoria">
-                        <li>Treino personalizados à distancia</li>
-                        <li> Utilizo o aplicativo <strong>MFIT</strong> </li>
-                        <li> controle de evolução, ajustes de treinos
-                            e suporte profissional.</li>
-                        </ulv>
+                <div class="stat">
+                    <span class="contador" data-alvo="50">0</span>
+                    <p>Alunos atendidos</p>
+                </div>
+                <div class="stat">
+                    <span class="contador" data-alvo="100">0</span>
+                    <p>% dedicação</p>
                 </div>
             </div>
         </section>
 
+        <!-- SOBRE: apresentação pessoal -->
+        <section id="sobre">
+            <h2 class="section-titulo">Sobre mim</h2>
+            <div class="sobre-container">
+                <img src="img/perfil.jpg" alt="Foto de Guilherme Venturini" class="foto-perfil">
+                <div class="sobre-texto">
+                    <p>
+                        Profissional de Educação Física formado pela <strong>FIG-Unimesp</strong>, com 4 anos de
+                        experiência na área. Atuo com foco em <strong>hipertrofia</strong>,
+                        <strong>emagrecimento</strong>
+                        e <strong>qualidade de vida</strong>, desenvolvendo treinos personalizados de acordo com o
+                        objetivo de cada aluno.
+                    </p>
+                    <p>
+                        Ofereço acompanhamento completo, tanto presencial quanto online, visando resultados
+                        consistentes e evolução contínua.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVIÇOS: cards clicáveis que expandem o conteúdo -->
+        <section id="servicos">
+            <h2 class="section-titulo">Serviços</h2>
+
+            <div class="servicos-container">
+
+                <!-- Cada card tem o atributo data-id para o JS saber qual abrir -->
+                <div class="servico-card" data-id="presencial">
+                    <div class="servico-header">
+                        <div class="servico-icone">🏋️</div>
+                        <h3>Personal Presencial</h3>
+                        <!-- Seta que gira quando o card está aberto -->
+                        <span class="seta">▼</span>
+                    </div>
+                    <!-- Conteúdo oculto por padrão, abre com JS -->
+                    <ul class="descricao" id="presencial">
+                        <li>✅ Acompanhamento 100% individual</li>
+                        <li>✅ Correção de execução em tempo real</li>
+                        <li>✅ Ajustes de cargas durante o treino</li>
+                        <li>✅ Foco total em resultados</li>
+                    </ul>
+                </div>
+
+                <div class="servico-card" data-id="consultoria">
+                    <div class="servico-header">
+                        <div class="servico-icone">📱</div>
+                        <h3>Consultoria Online</h3>
+                        <span class="seta">▼</span>
+                    </div>
+                    <ul class="descricao" id="consultoria">
+                        <li>✅ Treinos personalizados à distância</li>
+                        <li>✅ Utilizo o aplicativo <strong>MFIT</strong></li>
+                        <li>✅ Controle de evolução e ajustes de treinos</li>
+                        <li>✅ Suporte profissional contínuo</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTATO: botões de WhatsApp e Instagram -->
         <section id="contato">
-            <h2>Contato</h2>
+            <h2 class="section-titulo">Contato</h2>
             <p>Entre em contato para começar sua transformação.</p>
 
             <div class="contato-botoes">
-                <a class="btn" href="https://wa.me/5511942052917">WhatsApp
+                <a class="btn btn-whats" href="https://wa.me/5511942052917" target="_blank">
+                    💬 WhatsApp
                 </a>
-                <a class="btn insta" href="https://instagram.com/guipersonal11" target="_blank">
-                    instagram
+                <a class="btn btn-insta" href="https://instagram.com/guipersonal11" target="_blank">
+                    📸 Instagram
                 </a>
             </div>
         </section>
@@ -78,18 +143,10 @@
     </main>
 
     <footer>
-        <p>© 2026 GV Personal</p>
+        <p>© 2026 GV Personal — Todos os direitos reservados</p>
     </footer>
 
-    <script>
-        function toggleservico(id) {
-            const elemento = document.getElementById(id);
-            elemento.style.display =
-                elemento.style.display ===
-                    "block" ? "none" : "block";
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
